@@ -9,6 +9,7 @@
         "outDir": "dist",
         "rootDirs": ["src"]
     },
-    "include": ["src", "src/**/*.ts", "src/**/*.d.ts"],
-    "lib": ["es2015"]
+    "include": ["src", "src/**/*.ts", "src/**/*.d.ts", "index.ts"],
+    "lib": ["es2015"],
+    "exclude": ["node_modules", "dist"]
 }
