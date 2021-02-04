@@ -1,5 +1,5 @@
 {
-    "name": "tsreact",
+    "name": "treact-cli",
     "version": "1.0.0",
     "description": "react cli",
     "main": "index.js",
