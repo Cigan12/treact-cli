@@ -1,4 +1,4 @@
-const hello = require('./src/module');
-hello();
+const showLogo = require('./src/module');
+showLogo();
 
 export {};

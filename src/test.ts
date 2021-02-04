@@ -1,5 +1,3 @@
-const hello = () => {
-    console.log('hello');
-};
+const showLogo = () => {};
 
-module.exports = hello;
+module.exports = showLogo;
