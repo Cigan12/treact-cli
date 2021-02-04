@@ -1,4 +1,5 @@
 #!/usr/bin/env node
-import { showLogo } from './showLogo/showLogo';
+import { parseArguments, showLogo } from './showLogo/showLogo';
 
 showLogo();
+parseArguments();

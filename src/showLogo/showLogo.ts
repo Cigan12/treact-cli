@@ -1,6 +1,7 @@
 import figlet from 'figlet';
 import chalk from 'chalk';
 import clear from 'clear';
+import minimist from 'minimist';
 
 export const showLogo = (): void => {
     clear();
@@ -10,4 +11,8 @@ export const showLogo = (): void => {
             figlet.textSync('TS-REACT', { horizontalLayout: 'full' })
         )
     );
+};
+
+export const parseArguments = (): void => {
+    console.log('​minimist', minimist(process.argv.slice(2)));
 };
