@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "react cli",
     "main": "index.js",
+    "repository": "https://github.com/Cigan12/ts-react-cli.git",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "start": "ts-node index.ts",
         "build": "tsc"
     },
