@@ -11,6 +11,9 @@
         "lint": "eslint ./**/*.ts",
         "format": "eslint ./**/*.ts --fix"
     },
+    "bin": {
+        "treact": "./dist/index.js"
+    },
     "keywords": [
         "tsreact",
         "cli",
@@ -32,6 +35,7 @@
         "chalk": "^4.1.0",
         "clear": "^0.1.0",
         "figlet": "^1.5.0",
+        "global": "^4.4.0",
         "nodemon": "^2.0.7"
     }
 }
