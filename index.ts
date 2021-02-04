@@ -1,4 +1,3 @@
-const showLogo = require('./src/module');
-showLogo();
+import showLogo from './src/showLogo/showLogo';
 
-export {};
+showLogo();
