@@ -1,8 +1,8 @@
-import figlet = require('figlet');
-import chalk = require('chalk');
-import clear = require('clear');
+import figlet from 'figlet';
+import chalk from 'chalk';
+import clear from 'clear';
 
-const showLogo = (): void => {
+export const showLogo = (): void => {
     clear();
 
     console.log(
@@ -11,5 +11,3 @@ const showLogo = (): void => {
         )
     );
 };
-
-export = showLogo;

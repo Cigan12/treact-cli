@@ -1,2 +1,2 @@
-import showLogo = require('./showLogo/showLogo');
+import { showLogo } from './showLogo/showLogo';
 showLogo();
