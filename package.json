@@ -12,7 +12,7 @@
         "format": "eslint ./**/*.ts --fix"
     },
     "bin": {
-        "treact": "./dist/index.js"
+        "tsreact": "./dist/index.js"
     },
     "keywords": [
         "tsreact",
