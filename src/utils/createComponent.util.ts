@@ -9,7 +9,8 @@ import { capitalize } from './small.util';
 export const createComponent = (
     path: string,
     name: string,
-    preprocessor: EPreprocessors
+    preprocessor: EPreprocessors,
+    rn?: boolean
 ): void => {
     const nameCap = capitalize(name);
     fs.mkdir(path + '/' + capitalize(name), {}, (err) => {
@@ -28,10 +29,10 @@ export const createComponent = (
                 );
             } else {
                 generateReactTSComponent(
-                    nameCap,
                     path + '/' + nameCap + '/' + nameCap,
+                    nameCap,
                     preprocessor,
-                    false
+                    true
                 );
             }
         }
@@ -45,16 +46,16 @@ const generateStylesFile = (
 ): void => {
     switch (preprocessor) {
         case EPreprocessors.CSS:
-            generateEmptyStylesFile(name, path, 'css');
+            generateEmptyStylesFile(name, path, EPreprocessors.CSS);
             break;
         case EPreprocessors.LESS:
-            generateEmptyStylesFile(name, path, 'less');
+            generateEmptyStylesFile(name, path, EPreprocessors.LESS);
             break;
         case EPreprocessors.SCSS:
-            generateEmptyStylesFile(name, path, 'scss');
+            generateEmptyStylesFile(name, path, EPreprocessors.SCSS);
             break;
         case EPreprocessors.STYLUS:
-            generateEmptyStylesFile(name, path, 'styl');
+            generateEmptyStylesFile(name, path, EPreprocessors.STYLUS);
             break;
         case EPreprocessors.RN:
             generateRNStylesFile(name, path);

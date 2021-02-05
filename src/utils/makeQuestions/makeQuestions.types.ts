@@ -3,11 +3,24 @@ export interface IFindComponentStructureReturn {
     pathToComponentsFolder: string;
 }
 
+export interface IQuestion {
+    type: string;
+    name: string;
+    message: string;
+    choices?: Array<
+        | string
+        | {
+              name: string;
+              value: string;
+          }
+    >;
+}
+
 export enum EPreprocessors {
-    NONE = 'None',
-    CSS = 'CSS',
-    SCSS = 'SASS/SCSS',
-    LESS = 'Less',
-    STYLUS = 'Stylus',
+    NONE = 'no',
+    CSS = 'css',
+    SCSS = 'scss',
+    LESS = 'less',
+    STYLUS = 'styl',
     RN = 'rn',
 }

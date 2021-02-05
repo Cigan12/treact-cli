@@ -7,6 +7,7 @@ import { join } from 'path';
 import {
     EPreprocessors,
     IFindComponentStructureReturn,
+    IQuestion,
 } from './makeQuestions.types';
 
 const findComponentFolderStructure = (): IFindComponentStructureReturn => {
@@ -71,17 +72,23 @@ const findComponentFolderStructure = (): IFindComponentStructureReturn => {
 
 export const createComponentQuestion = (name?: string, rn?: boolean): void => {
     const componentsFolderStructure = findComponentFolderStructure();
-    const questionsListForComponent = [
-        {
-            type: 'list',
-            name: 'preprocessor',
-            message: 'Which preprocessor you will use?',
-            choices: ['None', 'CSS', 'SASS/SCSS', 'Less', 'Stylus'],
-        },
+    const questionsListForComponent: Array<IQuestion> = [
         {
             type: 'input',
             name: 'componentName',
             message: 'Write component name',
+        },
+        {
+            type: 'list',
+            name: 'preprocessor',
+            message: 'Which preprocessor you will use?',
+            choices: [
+                { name: 'None', value: 'no' },
+                { name: 'CSS', value: 'css' },
+                { name: 'SASS/SCSS', value: 'scss' },
+                { name: 'Less', value: 'less' },
+                { name: 'Stylus', value: 'styl' },
+            ],
         },
         {
             type: 'list',
@@ -92,11 +99,19 @@ export const createComponentQuestion = (name?: string, rn?: boolean): void => {
     ];
 
     if (name) {
-        questionsListForComponent.splice(1, 1);
+        removeQuestionByName('componentName', questionsListForComponent);
     }
 
     if (rn) {
-        questionsListForComponent.splice(0, 1);
+        changeQuestionByName('preprocessor', questionsListForComponent, {
+            type: 'list',
+            name: 'preprocessor',
+            message: 'Generate styles file?',
+            choices: [
+                { name: 'No', value: 'no' },
+                { name: 'Yes', value: 'rn' },
+            ],
+        });
     }
 
     inquirer
@@ -108,12 +123,25 @@ export const createComponentQuestion = (name?: string, rn?: boolean): void => {
                         ? '/' + answers.componentFolder
                         : ''),
                 answers.componentName,
+                answers.preprocessor as EPreprocessors,
                 rn
-                    ? EPreprocessors.RN
-                    : (answers.preprocessor as EPreprocessors)
             );
         })
         .catch((err) => {
             console.error(err);
         });
+};
+
+const removeQuestionByName = (name: string, arr: Array<IQuestion>): void => {
+    const index = arr.findIndex((question) => question.name === name);
+    arr.splice(index, 1);
+};
+
+const changeQuestionByName = (
+    name: string,
+    arr: Array<IQuestion>,
+    change: IQuestion
+): void => {
+    const index = arr.findIndex((question) => question.name === name);
+    arr[index] = change;
 };
