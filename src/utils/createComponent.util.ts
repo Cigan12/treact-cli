@@ -9,8 +9,7 @@ import { capitalize } from './small.util';
 export const createComponent = (
     path: string,
     name: string,
-    preprocessor: EPreprocessors,
-    rn?: boolean
+    preprocessor: EPreprocessors
 ): void => {
     const nameCap = capitalize(name);
     fs.mkdir(path + '/' + capitalize(name), {}, (err) => {

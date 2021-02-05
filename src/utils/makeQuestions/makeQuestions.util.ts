@@ -132,8 +132,7 @@ export const createComponentQuestion = ({
                         ? '/' + answers.componentFolder
                         : ''),
                 name ? name : answers.componentName,
-                style ? style : (answers.preprocessor as EPreprocessors),
-                rn
+                style ? style : (answers.preprocessor as EPreprocessors)
             );
         })
         .catch((err) => {
