@@ -5,12 +5,7 @@ const reactTsComponent = (name, stylesExt, notStyled) => `import React from 'rea
 ${!notStyled
     ? stylesExt
         ? "import './" + name + '.styles.' + stylesExt + "';"
-        : 'import { ' +
-            name +
-            'Styles } from ' +
-            "'./" +
-            name +
-            ".styles.ts';"
+        : 'import { ' + name + 'Styles } from ' + "'./" + name + ".styles';"
     : ''}
 
 interface I${name}Props {}

@@ -71,7 +71,7 @@ const generateRNStylesFile = (componentName, path) => {
     });
 };
 const generateReactTSComponent = (path, componentName, stylesExt, notStyled) => {
-    fs_1.default.writeFile(path + '.component.ts', reactTsComponent_1.reactTsComponent(componentName, stylesExt, notStyled), (err) => {
+    fs_1.default.writeFile(path + '.component.tsx', reactTsComponent_1.reactTsComponent(componentName, stylesExt, notStyled), (err) => {
         if (err) {
             throw err;
         }
