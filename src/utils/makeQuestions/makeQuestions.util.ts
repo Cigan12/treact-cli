@@ -1,10 +1,13 @@
-import { fstat, statSync } from 'fs';
+import { statSync } from 'fs';
 import inquirer from 'inquirer';
 import fs from 'fs';
 import { createComponent } from '../createComponent.util';
 import { cwd } from 'process';
 import { join } from 'path';
-import { IFindComponentStructureReturn } from './makeQuestions.types';
+import {
+    EPreprocessors,
+    IFindComponentStructureReturn,
+} from './makeQuestions.types';
 
 const findComponentFolderStructure = (): IFindComponentStructureReturn => {
     //GET CURRENT FOLDER STRUCTURE
@@ -66,9 +69,15 @@ const findComponentFolderStructure = (): IFindComponentStructureReturn => {
     }
 };
 
-export const createComponentQuestion = (name?: string): void => {
+export const createComponentQuestion = (name?: string, rn?: boolean): void => {
     const componentsFolderStructure = findComponentFolderStructure();
     const questionsListForComponent = [
+        {
+            type: 'list',
+            name: 'preprocessor',
+            message: 'Which preprocessor you will use?',
+            choices: ['None', 'CSS', 'SASS/SCSS', 'Less', 'Stylus'],
+        },
         {
             type: 'input',
             name: 'componentName',
@@ -78,11 +87,15 @@ export const createComponentQuestion = (name?: string): void => {
             type: 'list',
             name: 'componentFolder',
             message: 'Choose folder for component',
-            choices: ['None', ...componentsFolderStructure.items],
+            choices: ['Root', ...componentsFolderStructure.items],
         },
     ];
 
     if (name) {
+        questionsListForComponent.splice(1, 1);
+    }
+
+    if (rn) {
         questionsListForComponent.splice(0, 1);
     }
 
@@ -91,10 +104,13 @@ export const createComponentQuestion = (name?: string): void => {
         .then((answers) => {
             createComponent(
                 componentsFolderStructure.pathToComponentsFolder +
-                    (answers.componentFolder !== 'None'
+                    (answers.componentFolder !== 'Root'
                         ? '/' + answers.componentFolder
                         : ''),
-                answers.componentName
+                answers.componentName,
+                rn
+                    ? EPreprocessors.RN
+                    : (answers.preprocessor as EPreprocessors)
             );
         })
         .catch((err) => {
