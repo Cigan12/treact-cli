@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import clear from 'clear';
 import minimist from 'minimist';
 import inquirer from 'inquirer';
-import { createComponent } from '../createComponent';
+import { createComponent } from './createComponent.util';
 
 export const showLogo = (): void => {
     clear();

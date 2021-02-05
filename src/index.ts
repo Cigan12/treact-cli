@@ -1,5 +1,9 @@
 #!/usr/bin/env node
-import { parseArguments, showLogo } from './showLogo/showLogo';
+import { parseArguments, showLogo } from './utils/showLogo.util';
 
-showLogo();
-parseArguments();
+const init = (): void => {
+    showLogo();
+    parseArguments();
+};
+
+init();
