@@ -7,12 +7,7 @@ ${
     !notStyled
         ? stylesExt
             ? "import './" + name + '.styles.' + stylesExt + "';"
-            : 'import { ' +
-              name +
-              'Styles } from ' +
-              "'./" +
-              name +
-              ".styles.ts';"
+            : 'import { ' + name + 'Styles } from ' + "'./" + name + ".styles';"
         : ''
 }
 

@@ -1,6 +1,6 @@
 {
     "name": "treact-cli",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "react cli",
     "main": "index.js",
     "repository": "https://github.com/Cigan12/treact-cli.git",

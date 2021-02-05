@@ -95,7 +95,7 @@ const generateReactTSComponent = (
     notStyled?: boolean
 ): void => {
     fs.writeFile(
-        path + '.component.ts',
+        path + '.component.tsx',
         reactTsComponent(componentName, stylesExt, notStyled),
         (err) => {
             if (err) {
