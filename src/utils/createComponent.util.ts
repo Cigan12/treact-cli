@@ -4,21 +4,28 @@ import { cwd } from 'process';
 import { reactTsComponent } from '../assets/reactTsComponent';
 import { capitalize } from './small.util';
 
-export const createComponent = (name: string): void => {
-    fs.mkdir(cwd() + '/' + capitalize(name), {}, (err) => {
-        if (err) throw err;
-        fs.writeFile(
-            cwd() +
-                '/' +
-                capitalize(name) +
-                '/' +
-                capitalize(name) +
-                '.component.ts',
-            reactTsComponent(capitalize(name)),
-            (err) => {
-                if (err) throw err;
-                console.log(chalk.green('Success'));
+export const createComponent = (path: string, name: string): void => {
+    fs.mkdir(path + '/' + capitalize(name), {}, (err) => {
+        if (err) {
+            if (err.code === 'EEXIST') {
+                console.log(
+                    chalk.red(`Component with name "${name}" already exist`)
+                );
             }
-        );
+        } else {
+            fs.writeFile(
+                path +
+                    '/' +
+                    capitalize(name) +
+                    '/' +
+                    capitalize(name) +
+                    '.component.ts',
+                reactTsComponent(capitalize(name)),
+                (err) => {
+                    if (err) throw err;
+                    console.log(chalk.green('Success'));
+                }
+            );
+        }
     });
 };
