@@ -24,3 +24,9 @@ export enum EPreprocessors {
     STYLUS = 'styl',
     RN = 'rn',
 }
+
+export interface ICreateComponentQuestionProps {
+    name?: string;
+    rn?: boolean;
+    style?: EPreprocessors;
+}

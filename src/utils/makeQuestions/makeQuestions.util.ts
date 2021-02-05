@@ -6,6 +6,7 @@ import { cwd } from 'process';
 import { join } from 'path';
 import {
     EPreprocessors,
+    ICreateComponentQuestionProps,
     IFindComponentStructureReturn,
     IQuestion,
 } from './makeQuestions.types';
@@ -70,7 +71,11 @@ const findComponentFolderStructure = (): IFindComponentStructureReturn => {
     }
 };
 
-export const createComponentQuestion = (name?: string, rn?: boolean): void => {
+export const createComponentQuestion = ({
+    name,
+    rn,
+    style,
+}: ICreateComponentQuestionProps): void => {
     const componentsFolderStructure = findComponentFolderStructure();
     const questionsListForComponent: Array<IQuestion> = [
         {
@@ -114,6 +119,10 @@ export const createComponentQuestion = (name?: string, rn?: boolean): void => {
         });
     }
 
+    if (style) {
+        removeQuestionByName('preprocessor', questionsListForComponent);
+    }
+
     inquirer
         .prompt(questionsListForComponent)
         .then((answers) => {
@@ -122,8 +131,8 @@ export const createComponentQuestion = (name?: string, rn?: boolean): void => {
                     (answers.componentFolder !== 'Root'
                         ? '/' + answers.componentFolder
                         : ''),
-                answers.componentName,
-                answers.preprocessor as EPreprocessors,
+                name ? name : answers.componentName,
+                style ? style : (answers.preprocessor as EPreprocessors),
                 rn
             );
         })
