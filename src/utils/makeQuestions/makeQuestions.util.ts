@@ -41,6 +41,28 @@ const findComponentFolderStructure = (): IFindComponentStructureReturn => {
             };
         }
     } else {
+        //  FIND COMPONENTS FOLDER
+        const srcFolderStructure = fs.readdirSync(cwd());
+        const isComponentsFolder = !!srcFolderStructure.find(
+            (folder) => folder === 'components'
+        );
+
+        if (isComponentsFolder) {
+            const componentsFolderStructure = fs.readdirSync(
+                cwd() + '/components'
+            );
+
+            return {
+                items: componentsFolderStructure,
+                pathToComponentsFolder: cwd() + '/components',
+            };
+        } else {
+            fs.mkdirSync(cwd() + '/components');
+            return {
+                items: [],
+                pathToComponentsFolder: cwd() + '/components',
+            };
+        }
     }
 };
 
