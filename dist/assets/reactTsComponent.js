@@ -1,7 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.reactTsComponent = void 0;
-const reactTsComponent = (name) => `import React from 'react'
+const reactTsComponent = (name, stylesExt, notStyled) => `import React from 'react';
+${!notStyled
+    ? stylesExt
+        ? "import './" + name + '.styles.' + stylesExt + "';"
+        : 'import { ' +
+            name +
+            'Styles } from ' +
+            "'./" +
+            name +
+            ".styles.ts';"
+    : ''}
 
 interface I${name}Props {}
 

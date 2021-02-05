@@ -1,1 +1,1 @@
-export declare const reactTsComponent: (name: string) => string;
+export declare const reactTsComponent: (name: string, stylesExt?: string, notStyled?: boolean) => string;
