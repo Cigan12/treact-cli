@@ -15,7 +15,7 @@ export const createInitQuestions = (): void => {
         {
             type: 'input',
             name: 'repository',
-            message: 'Write repository name or leave it empty',
+            message: 'Write repository url or leave it empty',
         },
         {
             type: 'list',
