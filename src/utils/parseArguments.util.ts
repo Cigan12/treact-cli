@@ -1,4 +1,5 @@
 import minimist from 'minimist';
+import { createInitQuestions } from './makeInitQuestions/makeInitQuestions.util';
 import { EPreprocessors } from './makeQuestions/makeQuestions.types';
 
 import { createComponentQuestion } from './makeQuestions/makeQuestions.util';
@@ -6,6 +7,9 @@ import { createComponentQuestion } from './makeQuestions/makeQuestions.util';
 export const parseArguments = (): void => {
     const args = minimist(process.argv.slice(2));
 
+    if (Object.keys(args).length && args._.length === 0) {
+        createInitQuestions();
+    }
     if (args.g === 'c') {
         createComponentQuestion({
             name: args.name,
