@@ -1,12 +1,14 @@
-import inquirer from 'inquirer';
-import { createReactApp } from '../createReactApp/createReactApp.util';
-import {
-    EPreprocessors,
-    IQuestion,
-} from '../makeQuestions/makeQuestions.types';
-
-export const createInitQuestions = (): void => {
-    const questionsListForComponent: Array<IQuestion> = [
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createInitQuestions = void 0;
+const inquirer_1 = __importDefault(require("inquirer"));
+const createReactApp_util_1 = require("../createReactApp/createReactApp.util");
+const makeQuestions_types_1 = require("../makeQuestions/makeQuestions.types");
+const createInitQuestions = () => {
+    const questionsListForComponent = [
         {
             type: 'input',
             name: 'name',
@@ -40,10 +42,10 @@ export const createInitQuestions = (): void => {
             name: 'preprocessor',
             message: 'Which preprocessor you will use?',
             choices: [
-                { name: 'SASS', value: EPreprocessors.SCSS },
-                { name: 'LESS', value: EPreprocessors.LESS },
-                { name: 'Stylus', value: EPreprocessors.STYLUS },
-                { name: 'None', value: EPreprocessors.NONE },
+                { name: 'SASS', value: makeQuestions_types_1.EPreprocessors.SCSS },
+                { name: 'LESS', value: makeQuestions_types_1.EPreprocessors.LESS },
+                { name: 'Stylus', value: makeQuestions_types_1.EPreprocessors.STYLUS },
+                { name: 'None', value: makeQuestions_types_1.EPreprocessors.NONE },
             ],
         },
         {
@@ -74,19 +76,19 @@ export const createInitQuestions = (): void => {
             ],
         },
     ];
-
-    inquirer
+    inquirer_1.default
         .prompt(questionsListForComponent)
         .then((answers) => {
-            if (answers.name && answers.typeOfProject) {
-                createReactApp({
-                    name: answers.name,
-                    type: answers.typeOfProject,
-                    gitUrl: answers.repository,
-                });
-            }
-        })
+        if (answers.name && answers.typeOfProject) {
+            createReactApp_util_1.createReactApp({
+                name: answers.name,
+                type: answers.typeOfProject,
+            });
+        }
+    })
         .catch((err) => {
-            console.error(err);
-        });
+        console.error(err);
+    });
 };
+exports.createInitQuestions = createInitQuestions;
+//# sourceMappingURL=makeInitQuestions.util.js.map

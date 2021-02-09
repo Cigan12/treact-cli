@@ -5,10 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseArguments = void 0;
 const minimist_1 = __importDefault(require("minimist"));
+const makeInitQuestions_util_1 = require("./makeInitQuestions/makeInitQuestions.util");
 const makeQuestions_types_1 = require("./makeQuestions/makeQuestions.types");
 const makeQuestions_util_1 = require("./makeQuestions/makeQuestions.util");
 const parseArguments = () => {
     const args = minimist_1.default(process.argv.slice(2));
+    if (Object.keys(args).length && args._.length === 0) {
+        makeInitQuestions_util_1.createInitQuestions();
+    }
     if (args.g === 'c') {
         makeQuestions_util_1.createComponentQuestion({
             name: args.name,
